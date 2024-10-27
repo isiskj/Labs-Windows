@@ -23,18 +23,18 @@ internal class LinkInlineRenderer : UWPObjectRenderer<LinkInline>
 
         if (link.IsImage)
         {
-            var image = new MyImage(link, CommunityToolkit.Labs.WinUI.MarkdownTextBlock.Extensions.GetUri(url, renderer.Config.BaseUrl), renderer.Config);
+            var image = new ImageElement(link, CommunityToolkit.Labs.WinUI.MarkdownTextBlock.Extensions.GetUri(url, renderer.Config.BaseUrl), renderer.Config);
             renderer.WriteInline(image);
         }
         else
         {
             if (link.FirstChild is LinkInline linkInlineChild && linkInlineChild.IsImage)
             {
-                renderer.Push(new MyHyperlinkButton(link, renderer.Config.BaseUrl));
+                renderer.Push(new HyperlinkButtonElement(link, renderer.Config.BaseUrl));
             }
             else
             {
-                var hyperlink = new MyHyperlink(link, renderer.Config.BaseUrl);
+                var hyperlink = new HyperlinkElement(link, renderer.Config.BaseUrl);
 
                 renderer.Push(hyperlink);
             }

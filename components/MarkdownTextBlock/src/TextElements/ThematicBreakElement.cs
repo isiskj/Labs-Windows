@@ -6,7 +6,7 @@ using Markdig.Syntax;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyThematicBreak : IAddChild
+internal class ThematicBreakElement : ITextElement
 {
     private ThematicBreakBlock _thematicBreakBlock;
     private Paragraph _paragraph;
@@ -16,7 +16,7 @@ internal class MyThematicBreak : IAddChild
         get => _paragraph;
     }
 
-    public MyThematicBreak(ThematicBreakBlock thematicBreakBlock)
+    public ThematicBreakElement(ThematicBreakBlock thematicBreakBlock)
     {
         _thematicBreakBlock = thematicBreakBlock;
         _paragraph = new Paragraph();
@@ -33,5 +33,5 @@ internal class MyThematicBreak : IAddChild
         _paragraph.Inlines.Add(inlineUIContainer);
     }
 
-    public void AddChild(IAddChild child) {}
+    public void AddChild(ITextElement child) {}
 }

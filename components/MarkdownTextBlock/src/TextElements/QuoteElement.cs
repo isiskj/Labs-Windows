@@ -6,10 +6,10 @@ using Markdig.Syntax;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyQuote : IAddChild
+internal class QuoteElement : ITextElement
 {
     private Paragraph _paragraph;
-    private MyFlowDocument _flowDocument;
+    private FlowDocumentElement _flowDocument;
     private QuoteBlock _quoteBlock;
 
     public TextElement TextElement
@@ -17,12 +17,12 @@ internal class MyQuote : IAddChild
         get => _paragraph;
     }
 
-    public MyQuote(QuoteBlock quoteBlock)
+    public QuoteElement(QuoteBlock quoteBlock)
     {
         _quoteBlock = quoteBlock;
         _paragraph = new Paragraph();
 
-        _flowDocument = new MyFlowDocument(quoteBlock);
+        _flowDocument = new FlowDocumentElement(quoteBlock);
         var inlineUIContainer = new InlineUIContainer();
 
         var grid = new Grid();
@@ -50,7 +50,7 @@ internal class MyQuote : IAddChild
         _paragraph.Inlines.Add(inlineUIContainer);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         _flowDocument.AddChild(child);
     }

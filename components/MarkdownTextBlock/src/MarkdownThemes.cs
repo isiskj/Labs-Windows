@@ -3,6 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using CommunityToolkit.Labs.WinUI.MarkdownTextBlock;
+using TextMateSharp.Grammars;
+
 #if !WINAPPSDK
 using FontWeight = Windows.UI.Text.FontWeight;
 using FontWeights = Windows.UI.Text.FontWeights;
@@ -62,4 +64,10 @@ public sealed class MarkdownThemes : DependencyObject
     public double InlineCodeFontSize { get; set; } = 10;
 
     public FontWeight InlineCodeFontWeight { get; set; } = FontWeights.Normal;
+
+    public Brush CodeBlockBackground { get; set; } = (Brush) Application.Current.Resources["ExpanderHeaderBackground"];
+
+    public ThemeName CodeBlockThemeName { get; set; } = ThemeName.LightPlus;
+
+    public FontFamily CodeBlockFontFamily { get; set; } = new FontFamily("Consolas");
 }

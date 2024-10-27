@@ -6,13 +6,13 @@ using Markdig.Syntax.Inlines;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyAutolinkInline : IAddChild
+internal class AutolinkInlineElement : ITextElement
 {
     private AutolinkInline _autoLinkInline;
 
     public TextElement TextElement { get; private set; }
 
-    public MyAutolinkInline(AutolinkInline autoLinkInline)
+    public AutolinkInlineElement(AutolinkInline autoLinkInline)
     {
         _autoLinkInline = autoLinkInline;
         TextElement = new Hyperlink()
@@ -22,11 +22,11 @@ internal class MyAutolinkInline : IAddChild
     }
 
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         try
         {
-            var text = (MyInlineText)child;
+            var text = (InlineTextElement)child;
             ((Hyperlink)TextElement).Inlines.Add((Run)text.TextElement);
         }
         catch (Exception ex)

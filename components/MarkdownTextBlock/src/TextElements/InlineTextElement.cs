@@ -4,19 +4,22 @@
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyLineBreak : IAddChild
+internal class InlineTextElement : ITextElement
 {
-    private LineBreak _lineBreak;
+    private Run _run;
 
     public TextElement TextElement
     {
-        get => _lineBreak;
+        get => _run;
     }
 
-    public MyLineBreak()
+    public InlineTextElement(string text)
     {
-        _lineBreak = new LineBreak();
+        _run = new Run()
+        {
+            Text = text
+        };
     }
 
-    public void AddChild(IAddChild child) {}
+    public void AddChild(ITextElement child) {}
 }

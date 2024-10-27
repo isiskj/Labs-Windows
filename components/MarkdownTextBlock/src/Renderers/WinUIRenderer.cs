@@ -14,17 +14,17 @@ namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.Renderers;
 
 public class WinUIRenderer : RendererBase
 {
-    private readonly Stack<IAddChild> _stack = new Stack<IAddChild>();
+    private readonly Stack<ITextElement> _stack = new Stack<ITextElement>();
     private char[] _buffer;
     private MarkdownConfig _config = MarkdownConfig.Default;
-    public MyFlowDocument FlowDocument { get; private set; }
+    public FlowDocumentElement FlowDocument { get; private set; }
     public MarkdownConfig Config
     {
         get => _config;
         set => _config = value;
     }
 
-    public WinUIRenderer(MyFlowDocument document, MarkdownConfig config)
+    public WinUIRenderer(FlowDocumentElement document, MarkdownConfig config)
     {
         _buffer = new char[1024];
         Config = config;
@@ -74,14 +74,14 @@ public class WinUIRenderer : RendererBase
             for (var i = 0; i < lines.Count; i++)
             {
                 if (i != 0)
-                    WriteInline(new MyLineBreak());
+                    WriteInline(new LineBreakElement());
 
                 WriteText(ref slices[i].Slice);
             }
         }
     }
 
-    public void Push(IAddChild child)
+    public void Push(ITextElement child)
     {
         _stack.Push(child);
     }
@@ -92,12 +92,12 @@ public class WinUIRenderer : RendererBase
         _stack.Peek().AddChild(popped);
     }
 
-    public void WriteBlock(IAddChild obj)
+    public void WriteBlock(ITextElement obj)
     {
         _stack.Peek().AddChild(obj);
     }
 
-    public void WriteInline(IAddChild inline)
+    public void WriteInline(ITextElement inline)
     {
         AddInline(_stack.Peek(), inline);
     }
@@ -112,7 +112,7 @@ public class WinUIRenderer : RendererBase
 
     public void WriteText(string? text)
     {
-        WriteInline(new MyInlineText(text ?? ""));
+        WriteInline(new InlineTextElement(text ?? ""));
     }
 
     public void WriteText(string? text, int offset, int length)
@@ -139,7 +139,7 @@ public class WinUIRenderer : RendererBase
         }
     }
 
-    private static void AddInline(IAddChild parent, IAddChild inline)
+    private static void AddInline(ITextElement parent, ITextElement inline)
     {
         parent.AddChild(inline);
     }

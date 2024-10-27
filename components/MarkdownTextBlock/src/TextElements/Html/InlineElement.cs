@@ -6,7 +6,7 @@ using HtmlAgilityPack;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements.Html;
 
-internal class MyInline : IAddChild
+internal class InlineElement : ITextElement
 {
     private HtmlNode _htmlNode;
     private Paragraph _paragraph;
@@ -18,7 +18,7 @@ internal class MyInline : IAddChild
         get => _inlineUIContainer;
     }
 
-    public MyInline(HtmlNode inline)
+    public InlineElement(HtmlNode inline)
     {
         _htmlNode = inline;
         _paragraph = new Paragraph();
@@ -30,7 +30,7 @@ internal class MyInline : IAddChild
         _inlineUIContainer.Child = _richTextBlock;
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         if (child.TextElement is Inline inlineChild)
         {

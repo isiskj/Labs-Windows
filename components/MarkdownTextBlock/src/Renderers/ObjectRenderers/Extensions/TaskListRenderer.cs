@@ -14,7 +14,7 @@ internal class TaskListRenderer : UWPObjectRenderer<TaskList>
         if (renderer == null) throw new ArgumentNullException(nameof(renderer));
         if (taskList == null) throw new ArgumentNullException(nameof(taskList));
 
-        var checkBox = new MyTaskListCheckBox(taskList);
+        var checkBox = new TaskListCheckBoxElement(taskList);
         renderer.WriteInline(checkBox);
     }
 }

@@ -14,14 +14,14 @@ internal class ListRenderer : UWPObjectRenderer<ListBlock>
         if (renderer == null) throw new ArgumentNullException(nameof(renderer));
         if (listBlock == null) throw new ArgumentNullException(nameof(listBlock));
 
-        var list = new MyList(listBlock);
+        var list = new ListElement(listBlock);
 
         renderer.Push(list);
 
         foreach (var item in listBlock)
         {
             var listItemBlock = (ListItemBlock)item;
-            var listItem = new MyBlockContainer(listItemBlock);
+            var listItem = new BlockContainerElement(listItemBlock);
             renderer.Push(listItem);
             renderer.WriteChildren(listItemBlock);
             renderer.Pop();

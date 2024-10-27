@@ -6,12 +6,12 @@ using Markdig.Extensions.TaskLists;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyTaskListCheckBox : IAddChild
+internal class TaskListCheckBoxElement : ITextElement
 {
     private TaskList _taskList;
     public TextElement TextElement { get; private set; }
 
-    public MyTaskListCheckBox(TaskList taskList)
+    public TaskListCheckBoxElement(TaskList taskList)
     {
         _taskList = taskList;
         var grid = new Grid();
@@ -36,7 +36,7 @@ internal class MyTaskListCheckBox : IAddChild
         TextElement = inlineUIContainer;
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
     }
 }

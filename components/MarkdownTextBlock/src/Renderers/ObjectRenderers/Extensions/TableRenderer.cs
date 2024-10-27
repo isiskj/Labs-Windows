@@ -14,7 +14,7 @@ public class TableRenderer : UWPObjectRenderer<Table>
         if (renderer == null) throw new ArgumentNullException(nameof(renderer));
         if (table == null) throw new ArgumentNullException(nameof(table));
 
-        var myTable = new MyTable(table);
+        var myTable = new TableElement(table);
 
         renderer.Push(myTable);
 
@@ -47,7 +47,7 @@ public class TableRenderer : UWPObjectRenderer<Table>
                     };
                 }
 
-                var myCell = new MyTableCell(cell, textAlignment, row.IsHeader, columnIndex, rowIndex);
+                var myCell = new TableCellElement(cell, textAlignment, row.IsHeader, columnIndex, rowIndex);
 
                 renderer.Push(myCell);
                 renderer.Write(cell);

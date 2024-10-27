@@ -6,25 +6,25 @@ using Markdig.Extensions.Tables;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyTable : IAddChild
+internal class TableElement : ITextElement
 {
     private Table _table;
     private Paragraph _paragraph;
-    private MyTableUIElement _tableElement;
+    private TableUIElement _tableElement;
 
     public TextElement TextElement
     {
         get => _paragraph;
     }
 
-    public MyTable(Table table)
+    public TableElement(Table table)
     {
         _table = table;
         _paragraph = new Paragraph();
         var row = table.FirstOrDefault() as TableRow;
         var column = row == null ? 0 : row.Count;
 
-        _tableElement = new MyTableUIElement
+        _tableElement = new TableUIElement
         (
             column,
             table.Count,
@@ -37,9 +37,9 @@ internal class MyTable : IAddChild
         _paragraph.Inlines.Add(inlineUIContainer);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
-        if (child is MyTableCell cellChild)
+        if (child is TableCellElement cellChild)
         {
             var cell = cellChild.Container;
 

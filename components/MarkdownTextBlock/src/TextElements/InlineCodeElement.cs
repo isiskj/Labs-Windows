@@ -6,7 +6,7 @@ using Markdig.Syntax.Inlines;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyInlineCode : IAddChild
+internal class InlineCodeElement : ITextElement
 {
     private CodeInline _codeInline;
     private InlineUIContainer _inlineContainer;
@@ -17,7 +17,7 @@ internal class MyInlineCode : IAddChild
         get => _inlineContainer;
     }
 
-    public MyInlineCode(CodeInline codeInline, MarkdownConfig config)
+    public InlineCodeElement(CodeInline codeInline, MarkdownConfig config)
     {
         _codeInline = codeInline;
         _config = config;
@@ -41,5 +41,5 @@ internal class MyInlineCode : IAddChild
     }
 
 
-    public void AddChild(IAddChild child) {}
+    public void AddChild(ITextElement child) {}
 }

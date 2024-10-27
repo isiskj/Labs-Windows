@@ -26,18 +26,18 @@ internal class HtmlWriter
                 var inlineTagName = node.Name.ToLower();
                 if (inlineTagName == "br")
                 {
-                    renderer.WriteInline(new MyLineBreak());
+                    renderer.WriteInline(new LineBreakElement());
                 }
                 else if (inlineTagName == "a")
                 {
-                    IAddChild hyperLink;
+                    ITextElement hyperLink;
                     if (node.ChildNodes.Any(n => n.Name != "#text"))
                     {
-                        hyperLink = new MyHyperlinkButton(node, renderer.Config.BaseUrl);
+                        hyperLink = new HyperlinkButtonElement(node, renderer.Config.BaseUrl);
                     }
                     else
                     {
-                        hyperLink = new MyHyperlink(node, renderer.Config.BaseUrl);
+                        hyperLink = new HyperlinkElement(node, renderer.Config.BaseUrl);
                     }
                     renderer.Push(hyperLink);
                     WriteHtml(renderer, node.ChildNodes);
@@ -45,12 +45,12 @@ internal class HtmlWriter
                 }
                 else if (inlineTagName == "img")
                 {
-                    var image = new MyImage(node, renderer.Config);
+                    var image = new ImageElement(node, renderer.Config);
                     renderer.WriteInline(image);
                 }
                 else
                 {
-                    var inline = new MyInline(node);
+                    var inline = new InlineElement(node);
                     renderer.Push(inline);
                     WriteHtml(renderer, node.ChildNodes);
                     renderer.Pop();
@@ -58,24 +58,24 @@ internal class HtmlWriter
             }
             else if (node.NodeType == HtmlNodeType.Element && node.Name.TagToType() == TextElements.HtmlElementType.Block)
             {
-                IAddChild block;
+                ITextElement block;
                 var tag = node.Name.ToLower();
                 if (tag == "details")
                 {
-                    block = new MyDetails(node);
+                    block = new DetailsElement(node);
                     node.ChildNodes.Remove(node.ChildNodes.FirstOrDefault(x => x.Name == "summary" || x.Name == "header"));
                     renderer.Push(block);
                     WriteHtml(renderer, node.ChildNodes);
                 }
                 else if (tag.IsHeading())
                 {
-                    var heading = new MyHeading(node, renderer.Config);
+                    var heading = new HeadingElement(node, renderer.Config);
                     renderer.Push(heading);
                     WriteHtml(renderer, node.ChildNodes);
                 }
                 else
                 {
-                    block = new MyBlock(node);
+                    block = new BlockElement(node);
                     renderer.Push(block);
                     WriteHtml(renderer, node.ChildNodes);
                 }

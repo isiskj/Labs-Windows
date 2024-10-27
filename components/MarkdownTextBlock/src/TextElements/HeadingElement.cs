@@ -7,7 +7,7 @@ using Markdig.Syntax;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyHeading : IAddChild
+internal class HeadingElement : ITextElement
 {
     private Paragraph _paragraph;
     private HeadingBlock? _headingBlock;
@@ -21,7 +21,7 @@ internal class MyHeading : IAddChild
         get => _paragraph;
     }
 
-    public MyHeading(HeadingBlock headingBlock, MarkdownConfig config)
+    public HeadingElement(HeadingBlock headingBlock, MarkdownConfig config)
     {
         _headingBlock = headingBlock;
         _paragraph = new Paragraph();
@@ -49,7 +49,7 @@ internal class MyHeading : IAddChild
         };
     }
 
-    public MyHeading(HtmlNode htmlNode, MarkdownConfig config)
+    public HeadingElement(HtmlNode htmlNode, MarkdownConfig config)
     {
         _htmlNode = htmlNode;
         _paragraph = new Paragraph();
@@ -87,7 +87,7 @@ internal class MyHeading : IAddChild
         };
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         if (child.TextElement is Inline inlineChild)
         {

@@ -25,7 +25,7 @@ internal class AutoLinkInlineRenderer : UWPObjectRenderer<AutolinkInline>
             url = "#";
         }
 
-        var autolink = new MyAutolinkInline(link);
+        var autolink = new AutolinkInlineElement(link);
 
         renderer.Push(autolink);
 

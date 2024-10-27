@@ -7,11 +7,11 @@ using Markdig.Syntax.Inlines;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyHyperlinkButton : IAddChild
+internal class HyperlinkButtonElement : ITextElement
 {
     private HyperlinkButton? _hyperLinkButton;
     private InlineUIContainer _inlineUIContainer = new InlineUIContainer();
-    private MyFlowDocument? _flowDoc;
+    private FlowDocumentElement? _flowDoc;
     private string? _baseUrl;
     private LinkInline? _linkInline;
     private HtmlNode? _htmlNode;
@@ -23,7 +23,7 @@ internal class MyHyperlinkButton : IAddChild
         get => _inlineUIContainer;
     }
 
-    public MyHyperlinkButton(LinkInline linkInline, string? baseUrl)
+    public HyperlinkButtonElement(LinkInline linkInline, string? baseUrl)
     {
         _baseUrl = baseUrl;
         var url = linkInline.GetDynamicUrl != null ? linkInline.GetDynamicUrl() ?? linkInline.Url : linkInline.Url;
@@ -31,7 +31,7 @@ internal class MyHyperlinkButton : IAddChild
         Init(url, baseUrl);
     }
 
-    public MyHyperlinkButton(HtmlNode htmlNode, string? baseUrl)
+    public HyperlinkButtonElement(HtmlNode htmlNode, string? baseUrl)
     {
         _baseUrl = baseUrl;
         _htmlNode = htmlNode;
@@ -49,17 +49,17 @@ internal class MyHyperlinkButton : IAddChild
         _hyperLinkButton.Margin = new Thickness(0);
         if (IsHtml && _htmlNode != null)
         {
-            _flowDoc = new MyFlowDocument(_htmlNode);
+            _flowDoc = new FlowDocumentElement(_htmlNode);
         }
         else if (_linkInline != null)
         {
-            _flowDoc = new MyFlowDocument(_linkInline);
+            _flowDoc = new FlowDocumentElement(_linkInline);
         }
         _inlineUIContainer.Child = _hyperLinkButton;
         _hyperLinkButton.Content = _flowDoc?.RichTextBlock;
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         _flowDoc?.AddChild(child);
     }

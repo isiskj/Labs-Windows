@@ -14,7 +14,7 @@ using Inline = Microsoft.UI.Xaml.Documents.Inline;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-public class MyFlowDocument : IAddChild
+public class FlowDocumentElement : ITextElement
 {
     private HtmlNode? _htmlNode;
     private RichTextBlock _richTextBlock = new RichTextBlock();
@@ -32,21 +32,21 @@ public class MyFlowDocument : IAddChild
 
     public bool IsHtml => _htmlNode != null;
 
-    public MyFlowDocument()
+    public FlowDocumentElement()
     {
     }
 
-    public MyFlowDocument(MarkdownObject markdownObject)
+    public FlowDocumentElement(MarkdownObject markdownObject)
     {
         _markdownObject = markdownObject;
     }
 
-    public MyFlowDocument(HtmlNode node)
+    public FlowDocumentElement(HtmlNode node)
     {
         _htmlNode = node;
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         TextElement element = child.TextElement;
         if (element != null)

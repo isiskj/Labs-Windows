@@ -7,7 +7,7 @@ using Markdig.Syntax.Inlines;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyHyperlink : IAddChild
+internal class HyperlinkElement : ITextElement
 {
     private Hyperlink _hyperlink;
     private LinkInline? _linkInline;
@@ -21,7 +21,7 @@ internal class MyHyperlink : IAddChild
         get => _hyperlink;
     }
 
-    public MyHyperlink(LinkInline linkInline, string? baseUrl)
+    public HyperlinkElement(LinkInline linkInline, string? baseUrl)
     {
         _baseUrl = baseUrl;
         var url = linkInline.GetDynamicUrl != null ? linkInline.GetDynamicUrl() ?? linkInline.Url : linkInline.Url;
@@ -32,7 +32,7 @@ internal class MyHyperlink : IAddChild
         };
     }
 
-    public MyHyperlink(HtmlNode htmlNode, string? baseUrl)
+    public HyperlinkElement(HtmlNode htmlNode, string? baseUrl)
     {
         _baseUrl = baseUrl;
         var url = htmlNode.GetAttributeValue("href", "#");
@@ -43,7 +43,7 @@ internal class MyHyperlink : IAddChild
         };
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
 #if !WINAPPSDK
         if (child.TextElement is Windows.UI.Xaml.Documents.Inline inlineChild)

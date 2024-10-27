@@ -7,7 +7,7 @@ using Windows.UI.Text;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyEmphasisInline : IAddChild
+internal class EmphasisInlineElement : ITextElement
 {
     private Span _span;
     private EmphasisInline _markdownObject;
@@ -21,21 +21,21 @@ internal class MyEmphasisInline : IAddChild
         get => _span;
     }
 
-    public MyEmphasisInline(EmphasisInline emphasisInline)
+    public EmphasisInlineElement(EmphasisInline emphasisInline)
     {
         _span = new Span();
         _markdownObject = emphasisInline;
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         try
         {
-            if (child is MyInlineText inlineText)
+            if (child is InlineTextElement inlineText)
             {
                 _span.Inlines.Add((Run)inlineText.TextElement);
             }
-            else if (child is MyEmphasisInline emphasisInline)
+            else if (child is EmphasisInlineElement emphasisInline)
             {
                 if (emphasisInline._isBold) { SetBold(); }
                 if (emphasisInline._isItalic) { SetItalic(); }
@@ -45,7 +45,7 @@ internal class MyEmphasisInline : IAddChild
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error in {nameof(MyEmphasisInline)}.{nameof(AddChild)}: {ex.Message}");
+            throw new Exception($"Error in {nameof(EmphasisInlineElement)}.{nameof(AddChild)}: {ex.Message}");
         }
     }
 

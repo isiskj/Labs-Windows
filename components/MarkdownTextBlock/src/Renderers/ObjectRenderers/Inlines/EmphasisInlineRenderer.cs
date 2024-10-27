@@ -14,21 +14,21 @@ internal class EmphasisInlineRenderer : UWPObjectRenderer<EmphasisInline>
         if (renderer == null) throw new ArgumentNullException(nameof(renderer));
         if (obj == null) throw new ArgumentNullException(nameof(obj));
 
-        MyEmphasisInline? span = null;
+        EmphasisInlineElement? span = null;
 
         switch (obj.DelimiterChar)
         {
             case '*':
             case '_':
-                span = new MyEmphasisInline(obj);
+                span = new EmphasisInlineElement(obj);
                 if (obj.DelimiterCount == 2) { span.SetBold(); } else { span.SetItalic(); }
                 break;
             case '~':
-                span = new MyEmphasisInline(obj);
+                span = new EmphasisInlineElement(obj);
                 if (obj.DelimiterCount == 2) { span.SetStrikeThrough(); } else { span.SetSubscript(); }
                 break;
             case '^':
-                span = new MyEmphasisInline(obj);
+                span = new EmphasisInlineElement(obj);
                 span.SetSuperscript();
                 break;
         }

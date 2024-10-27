@@ -8,12 +8,12 @@ using Microsoft.UI.Xaml.Controls;
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements.Html;
 
 // block
-internal class MyDetails : IAddChild
+internal class DetailsElement : ITextElement
 {
     private HtmlNode _htmlNode;
     private InlineUIContainer _inlineUIContainer;
     private Expander _expander;
-    private MyFlowDocument _flowDocument;
+    private FlowDocumentElement _flowDocument;
     private Paragraph _paragraph;
 
     public TextElement TextElement
@@ -21,7 +21,7 @@ internal class MyDetails : IAddChild
         get => _paragraph;
     }
 
-    public MyDetails(HtmlNode details)
+    public DetailsElement(HtmlNode details)
     {
         _htmlNode = details;
 
@@ -33,7 +33,7 @@ internal class MyDetails : IAddChild
         _inlineUIContainer = new InlineUIContainer();
         _expander = new Expander();
         _expander.HorizontalAlignment = HorizontalAlignment.Stretch;
-        _flowDocument = new MyFlowDocument(details);
+        _flowDocument = new FlowDocumentElement(details);
         _flowDocument.RichTextBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
         _expander.Content = _flowDocument.RichTextBlock;
         var headerBlock = new TextBlock()
@@ -47,7 +47,7 @@ internal class MyDetails : IAddChild
         _paragraph.Inlines.Add(_inlineUIContainer);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         _flowDocument.AddChild(child);
     }

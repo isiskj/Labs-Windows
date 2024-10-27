@@ -16,7 +16,7 @@ internal class LineBreakInlineRenderer : UWPObjectRenderer<LineBreakInline>
 
         if (obj.IsHard)
         {
-            renderer.WriteInline(new MyLineBreak());
+            renderer.WriteInline(new LineBreakElement());
         }
         else
         {

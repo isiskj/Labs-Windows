@@ -9,7 +9,7 @@ using Windows.Storage.Streams;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyImage : IAddChild
+internal class ImageElement : ITextElement
 {
     private InlineUIContainer _container = new InlineUIContainer();
     private LinkInline? _linkInline;
@@ -27,7 +27,7 @@ internal class MyImage : IAddChild
         get => _container;
     }
 
-    public MyImage(LinkInline linkInline, Uri uri, MarkdownConfig config)
+    public ImageElement(LinkInline linkInline, Uri uri, MarkdownConfig config)
     {
         _linkInline = linkInline;
         _uri = uri;
@@ -46,7 +46,7 @@ internal class MyImage : IAddChild
     }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public MyImage(HtmlNode htmlNode, MarkdownConfig? config)
+    public ImageElement(HtmlNode htmlNode, MarkdownConfig? config)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
 #pragma warning disable CS8601 // Possible null reference assignment.
@@ -154,5 +154,5 @@ internal class MyImage : IAddChild
         catch (Exception) { }
     }
 
-    public void AddChild(IAddChild child) {}
+    public void AddChild(ITextElement child) {}
 }

@@ -6,11 +6,11 @@ using Markdig.Syntax;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyBlockContainer : IAddChild
+internal class BlockContainerElement : ITextElement
 {
     private ContainerBlock _containerBlock;
     private InlineUIContainer _inlineUIContainer;
-    private MyFlowDocument _flowDocument;
+    private FlowDocumentElement _flowDocument;
     private Paragraph _paragraph;
 
     public TextElement TextElement
@@ -18,17 +18,17 @@ internal class MyBlockContainer : IAddChild
         get => _paragraph;
     }
 
-    public MyBlockContainer(ContainerBlock containerBlock)
+    public BlockContainerElement(ContainerBlock containerBlock)
     {
         _containerBlock = containerBlock;
         _inlineUIContainer = new InlineUIContainer();
-        _flowDocument = new MyFlowDocument(containerBlock);
+        _flowDocument = new FlowDocumentElement(containerBlock);
         _inlineUIContainer.Child = _flowDocument.RichTextBlock;
         _paragraph = new Paragraph();
         _paragraph.Inlines.Add(_inlineUIContainer);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         _flowDocument.AddChild(child);
     }

@@ -14,7 +14,7 @@ public partial class MarkdownTextBlock : Control
     private const string MarkdownContainerName = "MarkdownContainer";
     private Grid? _container;
     private MarkdownPipeline _pipeline;
-    private MyFlowDocument _document;
+    private FlowDocumentElement _document;
     private WinUIRenderer? _renderer;
 
     private static readonly DependencyProperty ConfigProperty = DependencyProperty.Register(
@@ -61,7 +61,7 @@ public partial class MarkdownTextBlock : Control
     public MarkdownTextBlock()
     {
         this.DefaultStyleKey = typeof(MarkdownTextBlock);
-        _document = new MyFlowDocument();
+        _document = new FlowDocumentElement();
         _pipeline = new MarkdownPipelineBuilder()
             .UseEmphasisExtras()
             .UseAutoLinks()

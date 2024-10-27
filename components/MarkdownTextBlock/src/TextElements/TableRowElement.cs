@@ -6,7 +6,7 @@ using Markdig.Extensions.Tables;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyTableRow : IAddChild
+internal class TableRowElement : ITextElement
 {
     private TableRow _tableRow;
     private StackPanel _stackPanel;
@@ -17,7 +17,7 @@ internal class MyTableRow : IAddChild
         get => _paragraph;
     }
 
-    public MyTableRow(TableRow tableRow)
+    public TableRowElement(TableRow tableRow)
     {
         _tableRow = tableRow;
         _paragraph = new Paragraph();
@@ -29,9 +29,9 @@ internal class MyTableRow : IAddChild
         _paragraph.Inlines.Add(inlineUIContainer);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
-        if (child is MyTableCell cellChild)
+        if (child is TableCellElement cellChild)
         {
             var richTextBlock = new RichTextBlock();
             richTextBlock.Blocks.Add((Paragraph)cellChild.TextElement);

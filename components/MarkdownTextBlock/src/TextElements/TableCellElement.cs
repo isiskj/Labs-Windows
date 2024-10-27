@@ -6,11 +6,11 @@ using Markdig.Extensions.Tables;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyTableCell : IAddChild
+internal class TableCellElement : ITextElement
 {
     private TableCell _tableCell;
     private Paragraph _paragraph = new Paragraph();
-    private MyFlowDocument _flowDocument;
+    private FlowDocumentElement _flowDocument;
     private bool _isHeader;
     private int _columnIndex;
     private int _rowIndex;
@@ -46,7 +46,7 @@ internal class MyTableCell : IAddChild
         get => _rowIndex;
     }
 
-    public MyTableCell(TableCell tableCell, TextAlignment textAlignment, bool isHeader, int columnIndex, int rowIndex)
+    public TableCellElement(TableCell tableCell, TextAlignment textAlignment, bool isHeader, int columnIndex, int rowIndex)
     {
         _isHeader = isHeader;
         _tableCell = tableCell;
@@ -54,7 +54,7 @@ internal class MyTableCell : IAddChild
         _rowIndex = rowIndex;
         _container = new Grid();
 
-        _flowDocument = new MyFlowDocument(tableCell);
+        _flowDocument = new FlowDocumentElement(tableCell);
         _flowDocument.RichTextBlock.TextWrapping = TextWrapping.Wrap;
         _flowDocument.RichTextBlock.TextAlignment = textAlignment;
         _flowDocument.RichTextBlock.HorizontalTextAlignment = textAlignment;
@@ -81,7 +81,7 @@ internal class MyTableCell : IAddChild
         _container.Children.Add(_flowDocument.RichTextBlock);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         _flowDocument.AddChild(child);
     }

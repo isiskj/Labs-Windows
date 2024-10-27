@@ -4,7 +4,7 @@
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal partial class MyTableUIElement : Panel
+internal partial class TableUIElement : Panel
 {
     private readonly int _columnCount;
     private readonly int _rowCount;
@@ -12,7 +12,7 @@ internal partial class MyTableUIElement : Panel
     private double[]? _columnWidths;
     private double[]? _rowHeights;
 
-    public MyTableUIElement(int columnCount, int rowCount, double borderThickness, Brush borderBrush)
+    public TableUIElement(int columnCount, int rowCount, double borderThickness, Brush borderBrush)
     {
         _columnCount = columnCount;
         _rowCount = rowCount;

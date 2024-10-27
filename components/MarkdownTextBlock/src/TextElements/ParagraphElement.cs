@@ -6,7 +6,7 @@ using Markdig.Syntax;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyParagraph : IAddChild
+internal class ParagraphElement : ITextElement
 {
     private ParagraphBlock _paragraphBlock;
     private Paragraph _paragraph;
@@ -16,13 +16,13 @@ internal class MyParagraph : IAddChild
         get => _paragraph;
     }
 
-    public MyParagraph(ParagraphBlock paragraphBlock)
+    public ParagraphElement(ParagraphBlock paragraphBlock)
     {
         _paragraphBlock = paragraphBlock;
         _paragraph = new Paragraph();
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         if (child.TextElement is Inline inlineChild)
         {

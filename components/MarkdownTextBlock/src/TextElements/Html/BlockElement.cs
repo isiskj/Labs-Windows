@@ -7,7 +7,7 @@ using Windows.UI.Text;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements.Html;
 
-internal class MyBlock : IAddChild
+internal class BlockElement : ITextElement
 {
     private HtmlNode _htmlNode;
     private Paragraph _paragraph;
@@ -18,7 +18,7 @@ internal class MyBlock : IAddChild
         get => _paragraph;
     }
 
-    public MyBlock(HtmlNode block)
+    public BlockElement(HtmlNode block)
     {
         _htmlNode = block;
         var align = _htmlNode.GetAttributeValue("align", "left");
@@ -35,7 +35,7 @@ internal class MyBlock : IAddChild
         StyleBlock();
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         if (child.TextElement is Block blockChild)
         {

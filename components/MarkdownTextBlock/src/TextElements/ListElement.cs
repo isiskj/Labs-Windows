@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-internal class MyList : IAddChild
+internal class ListElement : ITextElement
 {
     private Paragraph _paragraph;
     private InlineUIContainer _container;
@@ -25,7 +25,7 @@ internal class MyList : IAddChild
         get => _paragraph;
     }
 
-    public MyList(ListBlock listBlock)
+    public ListElement(ListBlock listBlock)
     {
         _paragraph = new Paragraph();
         _container = new InlineUIContainer();
@@ -49,7 +49,7 @@ internal class MyList : IAddChild
         _paragraph.Inlines.Add(_container);
     }
 
-    public void AddChild(IAddChild child)
+    public void AddChild(ITextElement child)
     {
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Auto) });
@@ -80,7 +80,7 @@ internal class MyList : IAddChild
         textBlock.SetValue(Grid.ColumnProperty, 0);
         textBlock.VerticalAlignment = VerticalAlignment.Top;
         grid.Children.Add(textBlock);
-        var flowDoc = new MyFlowDocument();
+        var flowDoc = new FlowDocumentElement();
         flowDoc.AddChild(child);
 
         flowDoc.RichTextBlock.SetValue(Grid.ColumnProperty, 1);

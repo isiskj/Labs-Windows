@@ -4,8 +4,8 @@
 
 namespace CommunityToolkit.Labs.WinUI.MarkdownTextBlock.TextElements;
 
-public interface IAddChild
+public interface ITextElement
 {
     TextElement TextElement { get; }
-    void AddChild(IAddChild child);
+    void AddChild(ITextElement child);
 }
