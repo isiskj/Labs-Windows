@@ -26,7 +26,7 @@ Otherwise, you can clone the repo, open the `components` directory, navigate wit
 The [tooling](https://github.com/CommunityToolkit/Tooling-Windows-Submodule) is in a submodule, so you'll need to use `--recurse-submodules` when cloning or pulling for the first time:
 
 ```shell
-git clone --recurse-submodules https://github.com/CommunityToolkit/Labs-Windows.git
+git clone --recurse-submodules https://github.com/isiskj/Labs-Windows.git
 ```
 
 ## Build Requirements
