@@ -26,7 +26,7 @@ public class TextMateFormatter
         grammar = registry.LoadGrammar(options.GetScopeByExtension(extention));
     }
 
-    public void FormatRichTextBlock(List<string> codeText, RichTextBlock textBlock)
+    public void FormatRichTextBlock(Stack<string> codeText, RichTextBlock textBlock)
     {
         IStateStack? ruleStack = null;
         foreach (string line in codeText)

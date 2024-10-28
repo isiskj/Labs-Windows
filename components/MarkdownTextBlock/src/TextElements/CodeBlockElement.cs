@@ -43,45 +43,35 @@ internal class CodeBlockElement : ITextElement
             //            var formatter = new ColorCode.RichTextBlockFormatter(Extensions.GetOneDarkProStyle());
             //#endif
 
-            //TextMateSharp_syntaxhighlight
+            //              TextMateSharp_syntaxhighlight
             var formatter = new TextMateFormatter(_config.Themes.CodeBlockThemeName, Extensions.ToExtension(fencedCodeBlock),fontFamiry);
-
-            if (fencedCodeBlock.Lines.Lines != null)
-            {
-                List<string> lines = new List<string>();
-                foreach (var line in fencedCodeBlock.Lines.Lines)
-                {
-                    lines.Add(line.ToString());
-                }
-                formatter.FormatRichTextBlock(lines, richTextBlock);
-            }
 
             //var stringBuilder = new StringBuilder();
 
             //// go through all the lines backwards and only add the lines to a stack if we have encountered the first non-empty line
-            //var lines = fencedCodeBlock.Lines.Lines;
-            //var stack = new Stack<string>();
-            //var encounteredFirstNonEmptyLine = false;
-            //if (lines != null)
-            //{
-            //    for (var i = lines.Length - 1; i >= 0; i--)
-            //    {
-            //        var line = lines[i];
-            //        if (String.IsNullOrWhiteSpace(line.ToString()) && !encounteredFirstNonEmptyLine)
-            //        {
-            //            continue;
-            //        }
+            var lines = fencedCodeBlock.Lines.Lines;
+            var stack = new Stack<string>();
+            var encounteredFirstNonEmptyLine = false;
+            if (lines != null)
+            {
+                for (var i = lines.Length - 1; i >= 0; i--)
+                {
+                    var line = lines[i];
+                    if (String.IsNullOrWhiteSpace(line.ToString()) && !encounteredFirstNonEmptyLine)
+                    {
+                        continue;
+                    }
 
-            //        encounteredFirstNonEmptyLine = true;
-            //        stack.Push(line.ToString());
-            //    }
-
-            //    // append all the lines in the stack to the string builder
-            //    while (stack.Count > 0)
-            //    {
-            //        stringBuilder.AppendLine(stack.Pop());
-            //    }
-            //}
+                    encounteredFirstNonEmptyLine = true;
+                    stack.Push(line.ToString());
+                }
+                formatter.FormatRichTextBlock(stack, richTextBlock);
+                //// append all the lines in the stack to the string builder
+                //while (stack.Count > 0)
+                //{
+                //    stringBuilder.AppendLine(stack.Pop());
+                //}
+            }
 
             ////formatter.FormatRichTextBlock(stringBuilder.ToString(), fencedCodeBlock.ToLanguage(), richTextBlock);
         }
