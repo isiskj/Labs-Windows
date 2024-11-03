@@ -21,7 +21,7 @@ public partial class MarkdownTextBlock : Control
         nameof(Config),
         typeof(MarkdownConfig),
         typeof(MarkdownTextBlock),
-        new PropertyMetadata(null, OnConfigChanged)
+        new PropertyMetadata(new MarkdownConfig(), OnConfigChanged)
     );
 
     private static readonly DependencyProperty TextProperty = DependencyProperty.Register(

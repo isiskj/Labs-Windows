@@ -13,7 +13,6 @@ namespace MarkdownTextBlockExperiment.Samples;
 public sealed partial class MarkdownTextBlockCustomSample : Page
 {
     private MarkdownConfig _config;
-    private MarkdownConfig _liveConfig;
     private string _text;
     private const string _markdown = @"
 This control was originally written by [Nero Cui](https://github.com/nerocui) for [JitHub](https://github.com/JitHubApp/JitHubV2). The control is powered by the popular [Markdig](https://github.com/xoofx/markdig) markdown parsing library and *almost* supports the full markdown syntax, with a focus on super-efficient parsing and rendering.
@@ -588,11 +587,6 @@ Source: https://www.reddit.com/r/reddit.com/comments/6ewgt/reddit_markdown_prime
         set => _config = value;
     }
 
-    public MarkdownConfig LiveMarkdownConfig
-    {
-        get => _liveConfig;
-        set => _liveConfig = value;
-    }
 
     public string Text
     {
@@ -604,8 +598,8 @@ Source: https://www.reddit.com/r/reddit.com/comments/6ewgt/reddit_markdown_prime
     {
         this.InitializeComponent();
         _config = new MarkdownConfig();
-        _liveConfig = new MarkdownConfig();
         _text = _markdown;
+        MarkdownConfig a = txt.Config;
         MarkdownTextBox.Text = "# Hello World\n\n";
     }
 }
