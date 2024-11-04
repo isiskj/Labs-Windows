@@ -362,3 +362,20 @@ heads/
 
 # We use slngen to generate solutions
 *.sln
+/components/MarkdownTextBlock/samples/TestData.cs
+/TestApp/TestApp.csproj
+/TestApp/TestData.cs
+/TestApp/Package.appxmanifest
+/TestApp/MainWindow.xaml
+/TestApp/MainWindow.xaml.cs
+/TestApp/App.xaml
+/TestApp/app.manifest
+/TestApp/Properties/launchSettings.json
+/TestApp/Assets/LockScreenLogo.scale-200.png
+/TestApp/Assets/SplashScreen.scale-200.png
+/TestApp/Assets/Square150x150Logo.scale-200.png
+/TestApp/Assets/Square44x44Logo.scale-200.png
+/TestApp/Assets/Square44x44Logo.targetsize-24_altform-unplated.png
+/TestApp/Assets/StoreLogo.png
+/TestApp/Assets/Wide310x150Logo.scale-200.png
+/TestApp/App.xaml.cs
